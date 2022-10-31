@@ -58,10 +58,10 @@ class CustomGreetingsColumn extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          imageName,
-          height: 300.0,
-          width: 300.0,
+        CircleAvatar(
+          radius: 150.0,
+          backgroundImage: AssetImage(imageName),
+          backgroundColor: Colors.transparent,
         ),
         SizedBox(
           height: 30,

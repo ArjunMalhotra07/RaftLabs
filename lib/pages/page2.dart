@@ -12,8 +12,8 @@ class _WelcomeMessageState extends State<WelcomeMessage> {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    // int hour = now.hour;
-    int hour = 9;
+    int hour = now.hour;
+
     bool ans = false;
 
     print(ans.toString());
