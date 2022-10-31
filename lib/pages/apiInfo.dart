@@ -8,18 +8,12 @@ class FetchDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<List<SampleApi>> getBatchers() async {
-      final response =
+    Future<List<SampleApi>?> getApiDataFunc() async {
+      var response =
           await http.get(Uri.parse('https://api.publicapis.org/entries'));
-      print('Get Batchers page players : ${response.body}');
-
       if (response.statusCode == 200) {
-        var data = json.decode(response.body) as List;
-        print('Players --- >  : ${json.decode(response.body)['entries']}');
-
+        var data = json.decode(response.body)['entries'] as List;
         return data.map((e) => SampleApi.fromJson(e)).toList();
-      } else {
-        throw Exception('${response.statusCode}');
       }
     }
 
@@ -29,8 +23,7 @@ class FetchDataPage extends StatelessWidget {
         title: const Text('Data'),
       ),
       body: FutureBuilder(
-        // future: fetchLeaderBoardData(),
-        future: getBatchers(),
+        future: getApiDataFunc(),
         builder: (context, data) {
           if (data.hasError) {
             return const Padding(
@@ -39,33 +32,33 @@ class FetchDataPage extends StatelessWidget {
                     child:
                         Text("Oops. Something went wrong. Try again later!")));
           } else if (data.hasData) {
-            var playersData = data.data as List<SampleApi>;
-            return Stack(
-              children: [
-                // waveBackground,
-                Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.68,
-                      child: ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: ((context, index) {
-                          final object = playersData[index];
-                          final apiName = object.api;
-                          final desc = object.description;
-                          final cors = object.cors;
-                          final https = object.https;
-                          return Container();
-                        }),
-                        scrollDirection: Axis.vertical,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+            var incomingDataObjects = data.data as List<SampleApi>;
+            return ListView.builder(
+              itemCount: incomingDataObjects.length,
+              itemBuilder: ((context, index) {
+                final object = incomingDataObjects[index];
+                final apiName = object.api;
+                final desc = object.description;
+                final cors = object.cors;
+                final https = object.https;
+                return Container(
+                  child: Column(
+                    children: [
+                      Text(apiName.toString()),
+                      Text(desc.toString()),
+                      Text(cors.toString()),
+                      Text(https.toString()),
+                      SizedBox(
+                        height: 50,
+                      )
+                    ],
+                  ),
+                );
+              }),
+              scrollDirection: Axis.vertical,
             );
           } else {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),
