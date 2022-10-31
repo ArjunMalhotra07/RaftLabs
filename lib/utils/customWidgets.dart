@@ -9,7 +9,7 @@ class CustomFormFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xffBCE0FD).withOpacity(.38),
+        color: Color.fromARGB(255, 124, 205, 116).withOpacity(.38),
         borderRadius: BorderRadius.circular(12),
       ),
       height: 50,
@@ -41,7 +41,7 @@ class CustomText extends StatelessWidget {
       nameText,
       style: const TextStyle(
         fontSize: 14,
-        color: Colors.blue,
+        color: Colors.green,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
       ),

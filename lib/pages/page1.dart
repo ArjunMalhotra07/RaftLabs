@@ -19,6 +19,11 @@ class _FetchDataState extends State<FetchData> {
             MaterialPageRoute(builder: (context) => FetchDataPage()),
           );
         },
+        style: ElevatedButton.styleFrom(
+            primary: Colors.green,
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+            textStyle:
+                const TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
         child: const Text('Fetch Data'),
       ),
     );

@@ -14,6 +14,7 @@ class FetchDataPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: const Text('Data'),
       ),
@@ -78,7 +79,7 @@ class FetchDataPage extends StatelessWidget {
                         const Center(
                             child: Text(
                           "*********************",
-                          style: TextStyle(color: Colors.blue),
+                          style: TextStyle(color: Colors.green),
                         )),
                         const SizedBox(
                           height: 50,
