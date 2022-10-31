@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:raftlabs/utils/api.dart';
-// import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:raftlabs/utils/customWidgets.dart';
 
 class WelcomeMessage extends StatefulWidget {
   WelcomeMessage({Key? key}) : super(key: key);
@@ -13,49 +12,25 @@ class _WelcomeMessageState extends State<WelcomeMessage> {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    int hour = now.hour;
+    // int hour = now.hour;
+    int hour = 9;
     bool ans = false;
-    void checkingNetwork() async {
-      // ans = await InternetConnectionChecker().hasConnection;
-    }
-
-    @override
-    void initState() {
-      super.initState();
-      checkingNetwork();
-    }
 
     print(ans.toString());
     return Center(
         child: hour >= 0 && hour <= 11
-            ? const Text("Good Morning")
+            ? CustomGreetingsColumn(
+                imageName: 'assets/gif1.gif',
+                greetingName: 'Good Morning',
+              )
             : hour >= 12 && hour <= 16
-                ? Column(
-                    children: [
-                      Image.asset(
-                        'assets/gif1.gif',
-                        height: 125.0,
-                        width: 125.0,
-                      ),
-                      const Text("Good Afternoon"),
-                    ],
+                ? CustomGreetingsColumn(
+                    imageName: 'assets/gif2.gif',
+                    greetingName: 'Good Afternoon',
                   )
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/gif2.gif',
-                        height: 300.0,
-                        width: 300.0,
-                      ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      const Text(
-                        "Good Evening",
-                        style: TextStyle(fontSize: 30),
-                      ),
-                    ],
+                : CustomGreetingsColumn(
+                    imageName: 'assets/gif3.gif',
+                    greetingName: 'Good Evening',
                   ));
   }
 }

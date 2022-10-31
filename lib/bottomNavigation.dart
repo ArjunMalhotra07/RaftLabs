@@ -25,6 +25,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(widget.title),
       ),
@@ -34,9 +35,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         onTap: (index) => setState(() {
           currentIndex = index;
         }),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.green,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Colors.green.shade900,
         iconSize: 30,
         showSelectedLabels: false,
         showUnselectedLabels: false,

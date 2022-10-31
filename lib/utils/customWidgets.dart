@@ -48,3 +48,29 @@ class CustomText extends StatelessWidget {
     );
   }
 }
+
+class CustomGreetingsColumn extends StatelessWidget {
+  CustomGreetingsColumn({Key? key, this.greetingName, this.imageName})
+      : super(key: key);
+  var imageName, greetingName;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          imageName,
+          height: 300.0,
+          width: 300.0,
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Text(
+          greetingName,
+          style: TextStyle(fontSize: 30),
+        ),
+      ],
+    );
+  }
+}
