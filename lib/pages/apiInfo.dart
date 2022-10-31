@@ -1,7 +1,6 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:raftlabs/models/apiModel.dart';
+import 'package:raftlabs/utils/api.dart';
 import 'package:raftlabs/utils/customWidgets.dart';
 
 class FetchDataPage extends StatelessWidget {
@@ -12,14 +11,6 @@ class FetchDataPage extends StatelessWidget {
     const box = SizedBox(
       height: 10,
     );
-    Future<List<SampleApi>?> getApiDataFunc() async {
-      var response =
-          await http.get(Uri.parse('https://api.publicapis.org/entries'));
-      if (response.statusCode == 200) {
-        var data = json.decode(response.body)['entries'] as List;
-        return data.map((e) => SampleApi.fromJson(e)).toList();
-      }
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +18,7 @@ class FetchDataPage extends StatelessWidget {
         title: const Text('Data'),
       ),
       body: FutureBuilder(
-        future: getApiDataFunc(),
+        future: API().getApiDataFunc(),
         builder: (context, data) {
           if (data.hasError) {
             return const Padding(
