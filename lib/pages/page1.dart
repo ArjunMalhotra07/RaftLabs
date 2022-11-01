@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:raftlabs/pages/apiInfo.dart';
 
 class FetchData extends StatefulWidget {
@@ -9,15 +10,18 @@ class FetchData extends StatefulWidget {
 }
 
 class _FetchDataState extends State<FetchData> {
+  bool ans = false;
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => FetchDataPage()),
-          );
+        onPressed: () async {
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => FetchDataPage()),
+          // );
+          ans = await InternetConnectionChecker().hasConnection;
+          print(ans);
         },
         style: ElevatedButton.styleFrom(
             primary: Colors.green,

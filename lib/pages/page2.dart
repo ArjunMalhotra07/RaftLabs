@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:raftlabs/utils/customWidgets.dart';
 
 class WelcomeMessage extends StatefulWidget {
@@ -9,14 +10,23 @@ class WelcomeMessage extends StatefulWidget {
 }
 
 class _WelcomeMessageState extends State<WelcomeMessage> {
+  bool ans = false;
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     int hour = now.hour;
 
-    bool ans = false;
+    void checkingConnection() async {
+      print("Hello");
+    }
 
-    print(ans.toString());
+    @override
+    void initState() async {
+      ans = await InternetConnectionChecker().hasConnection;
+      print(ans);
+      super.initState();
+    }
+
     return Center(
         child: hour >= 0 && hour <= 11
             ? CustomGreetingsColumn(

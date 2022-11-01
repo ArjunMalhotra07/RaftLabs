@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:raftlabs/pages/page1.dart';
 import 'package:raftlabs/pages/page2.dart';
+import 'package:raftlabs/pages/testPage.dart';
 import 'package:raftlabs/pages/page3.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
@@ -16,11 +17,7 @@ class BottomNavigationBarWidget extends StatefulWidget {
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int currentIndex = 1;
 
-  final screens = [
-    FetchData(),
-    WelcomeMessage(),
-    InAppWebViewPage(title: 'title', uri: 'https://github.com/ArjunMalhotra07')
-  ];
+  final screens = [FetchData(), WelcomeMessage(), const WebViewWidget()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
