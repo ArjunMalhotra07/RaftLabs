@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:raftlabs/utils/customWidgets.dart';
 
 class WelcomeMessage extends StatefulWidget {
@@ -11,41 +12,70 @@ class WelcomeMessage extends StatefulWidget {
 }
 
 class _WelcomeMessageState extends State<WelcomeMessage> {
-  bool ans = false;
+  late StreamSubscription subscription;
+  bool connection = false;
+  @override
+  void initState() {
+    print("inside init");
+    getConnectivity();
+    super.initState();
+  }
+
+  getConnectivity() {
+    print("inside get connectivity");
+    subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (result == ConnectivityResult.mobile) {
+        print("Mobile");
+        setState(() {
+          connection = true;
+        });
+      } else if (result == ConnectivityResult.wifi) {
+        print("Wifi");
+        setState(() {
+          connection = true;
+        });
+      } else if (result == ConnectivityResult.none) {
+        print("Not connected");
+        setState(() {
+          connection = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
     int hour = now.hour;
-
-    void checkingConnection() async {
-      print("Hello");
-    }
-
-    @override
-    void initState() async {
-      var connectivityResult = await (Connectivity().checkConnectivity());
-      if (connectivityResult == ConnectivityResult.mobile) {
-        print(connectivityResult);
-      } else if (connectivityResult == ConnectivityResult.wifi) {
-        print(connectivityResult);
-      }
-      super.initState();
-    }
 
     return Center(
         child: hour >= 0 && hour <= 11
             ? CustomGreetingsColumn(
                 imageName: 'assets/gif1.gif',
                 greetingName: 'Good Morning',
+                connectionImage: 'assets/gif6.gif',
+                isConnected: connection,
               )
             : hour >= 12 && hour <= 16
                 ? CustomGreetingsColumn(
-                    imageName: 'assets/gif2.gif',
+                    imageName: 'assets/gif5.gif',
                     greetingName: 'Good Afternoon',
+                    connectionImage: 'assets/gif6.gif',
+                    isConnected: connection,
                   )
                 : CustomGreetingsColumn(
                     imageName: 'assets/gif3.gif',
                     greetingName: 'Good Evening',
+                    connectionImage: 'assets/gif6.gif',
+                    isConnected: connection,
                   ));
   }
 }

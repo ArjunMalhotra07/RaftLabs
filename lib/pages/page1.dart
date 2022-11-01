@@ -16,12 +16,10 @@ class _FetchDataState extends State<FetchData> {
     return Center(
       child: ElevatedButton(
         onPressed: () async {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => FetchDataPage()),
-          // );
-          ans = await InternetConnectionChecker().hasConnection;
-          print(ans);
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => FetchDataPage()),
+          );
         },
         style: ElevatedButton.styleFrom(
             primary: Colors.green,
