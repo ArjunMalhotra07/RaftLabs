@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:raftlabs/pages/testPage.dart';
-
 import 'bottomNavigation.dart';
 
 void main() {
@@ -9,8 +7,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,8 +16,5 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: BottomNavigationBarWidget(title: 'RafLabs'));
-    // home: WebViewWidget1(),
-    // home: InAppWebViewPage(
-    // title: 'title', uri: 'https://github.com/ArjunMalhotra07'));
   }
 }
