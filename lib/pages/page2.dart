@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:raftlabs/utils/customWidgets.dart';
@@ -22,8 +23,12 @@ class _WelcomeMessageState extends State<WelcomeMessage> {
 
     @override
     void initState() async {
-      ans = await InternetConnectionChecker().hasConnection;
-      print(ans);
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult == ConnectivityResult.mobile) {
+        print(connectivityResult);
+      } else if (connectivityResult == ConnectivityResult.wifi) {
+        print(connectivityResult);
+      }
       super.initState();
     }
 
