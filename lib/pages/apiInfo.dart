@@ -71,6 +71,7 @@ class FetchDataPage extends StatelessWidget {
                         final desc = object.description;
                         final cors = object.cors;
                         final https = object.https;
+                        final auth = object.auth;
                         final link = object.link;
                         final category = object.category;
                         var num = index + 1;
@@ -109,6 +110,30 @@ class FetchDataPage extends StatelessWidget {
                               box,
                               CustomFormFieldWidget(
                                 hintText: category.toString(),
+                              ),
+                              box,
+                              CustomText(
+                                nameText: "Cors",
+                              ),
+                              box,
+                              CustomFormFieldWidget(
+                                hintText: cors.toString(),
+                              ),
+                              box,
+                              CustomText(
+                                nameText: "Auth",
+                              ),
+                              box,
+                              CustomFormFieldWidget(
+                                hintText: auth.toString(),
+                              ),
+                              box,
+                              CustomText(
+                                nameText: "HTTPS",
+                              ),
+                              box,
+                              CustomFormFieldWidget(
+                                hintText: https.toString(),
                               ),
                               box,
                               const Center(

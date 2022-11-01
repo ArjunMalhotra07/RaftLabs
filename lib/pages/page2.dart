@@ -16,28 +16,23 @@ class _WelcomeMessageState extends State<WelcomeMessage> {
   bool connection = false;
   @override
   void initState() {
-    print("inside init");
     getConnectivity();
     super.initState();
   }
 
   getConnectivity() {
-    print("inside get connectivity");
     subscription = Connectivity()
         .onConnectivityChanged
         .listen((ConnectivityResult result) {
       if (result == ConnectivityResult.mobile) {
-        print("Mobile");
         setState(() {
           connection = true;
         });
       } else if (result == ConnectivityResult.wifi) {
-        print("Wifi");
         setState(() {
           connection = true;
         });
       } else if (result == ConnectivityResult.none) {
-        print("Not connected");
         setState(() {
           connection = false;
         });
